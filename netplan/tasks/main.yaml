@@ -2,7 +2,7 @@
 - name: Create netplan configuration file
   become: true
   ansible.builtin.blockinfile:
-    path: /etc/netplan/60-vxlans.yaml
+    path: /etc/netplan/60-{{ netplan_name }}.yaml
     append_newline: false
     prepend_newline: false
     block: "{{ netplan_content | to_yaml }}"
