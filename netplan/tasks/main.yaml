@@ -3,6 +3,7 @@
   become: true
   ansible.builtin.blockinfile:
     path: /etc/netplan/60-vxlans.yaml
-    append_newline: true
-    prepend_newline: true
-    block: "{{ netplan_content }}"
+    append_newline: false
+    prepend_newline: false
+    block: "{{ netplan_content | to_yaml}}"
+    create: true
