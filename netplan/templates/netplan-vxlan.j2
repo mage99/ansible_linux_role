@@ -1,0 +1,14 @@
+# templates/netplan.yaml.tpl
+network:
+  renderer: networkd
+  tunnels:
+    vxlan{{ containers[container].vxlan.id }}:
+      id: {{ containers[container].vxlan.id }}
+      link: {{ containers[container].vxlan.linux_interface_name }}
+      link-local: []
+      local: {{ containers[container].vxlan.linux_interface_ip }}
+      mac-learning: true
+      mode: vxlan
+      port: 4789
+      remote: {{ containers[container].vxlan.checkpoint_interface_ip }}
+  version: 2
